@@ -1,0 +1,11 @@
+.container {
+
+  padding: 1em 2em;
+  & > label {
+    margin-right: 0.5em;
+  }
+  & > form {
+    display: inline;
+    margin-left: 1em;
+  }
+}
