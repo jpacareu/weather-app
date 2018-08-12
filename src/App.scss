@@ -1,3 +1,30 @@
+$jet-color: #333232;
+$melon: #F7B2AD;
+$dark-vanilla: #CEB7B3;
+$pale-pink: #FBDCD9;
+$ash-gray: #B7B7B7;
+$cambridge-blue: #9ABCA7;
+
+body {
+  background-color: $jet-color;
+  color: $melon;
+}
+input, select {
+  background-color: $ash-gray;
+}
+input:-webkit-autofill {
+    box-shadow: 0 0 0 30px $ash-gray inset;
+    -webkit-box-shadow: 0 0 0 30px $ash-gray inset;
+}
+button {
+    margin-left: 10px;
+    background-color: $pale-pink;
+    padding: 5px 5px;
+    border-radius: 5px;
+    &:hover {
+      background-color: $melon;
+    }
+}
 .container {
 
   padding: 1em 2em;
@@ -8,4 +35,32 @@
     display: inline;
     margin-left: 1em;
   }
+}
+.weather-content {
+  display: flex;
+  flex-wrap: wrap;
+  &__heading {
+    flex: none;
+  }
+  .weather-item {
+    display: flex;
+    align-content: flex-start;
+    &:hover {
+      cursor: pointer;
+    }
+    img {
+      height: 80px;
+    }
+    &__main-data {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    &__secondary-data {
+      font-size: 0.8em;
+      color: $cambridge-blue;
+      text-align: left;
+    }
+  }
+
 }

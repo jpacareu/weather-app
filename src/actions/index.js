@@ -8,20 +8,39 @@ export const FetchWeather = {
 
 export const SearchCriteria = {
     BY_CITY_NAME: 'BY_CITY_NAME',
-    BY_CITY_ID: 'BY_CITY_ID'
+    BY_CITY_ID: 'BY_CITY_ID',
+    BY_CITY_COORDINATES: 'BY_CITY_COORDINATES',
 };
 
-export const fetchWeatherCity = (city_id) => dispatch => { 
-    dispatch({
-        type: FetchWeather.FETCH_WEATHER_START
-    });
-    fetch(`http://api.openweathermap.org/data/2.5/weather?id=${city_id}&APPID=${API_KEY}`)
-    .then(resp => resp.json())
-    .then(weather => dispatch({
-        type: FetchWeather.FETCH_WEATHER_FINISHED,
-        payload: weather
-    }));
-    dispatch({
-        type: FetchWeather.FETCH_WEATHER_PENDING
-    });
+function apiUrl(value, selector){
+    const url = "http://api.openweathermap.org/data/2.5/";
+    switch (selector) {
+        case SearchCriteria.BY_CITY_ID:
+            return `${url}weather?id=${value}&APPID=${API_KEY}`;
+        case SearchCriteria.BY_CITY_NAME:
+            return `${url}weather?q=${value}&APPID=${API_KEY}`;
+        case SearchCriteria.BY_CITY_COORDINATE:
+            const [lat, lon] = value.split(',');
+            return `${url}weather?lat=${lat}&lon=${lon}&APPID=${API_KEY}`;
+        default:
+            break;
+    }
+
+}
+export const fetchWeather = (value, type) => dispatch => { 
+    const url = apiUrl(value, type);
+    if(url){
+        dispatch({
+            type: FetchWeather.FETCH_WEATHER_START
+        });
+        fetch(url)
+        .then(resp => resp.json())
+        .then(weather => dispatch({
+            type: FetchWeather.FETCH_WEATHER_FINISHED,
+            payload: weather
+        }));
+        dispatch({
+            type: FetchWeather.FETCH_WEATHER_PENDING
+        });
+    }
 }
