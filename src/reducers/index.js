@@ -13,6 +13,10 @@ const fetchWeather = (state = initialState ,action) => {
             return {...state,fetching: false,weather: action.payload};
         case FetchWeather.FETCH_WEATHER_PENDING:
             return {...state, fetching: true };
+        case FetchWeather.FETCH_FORECAST_FINISHED:
+            return {...state,fetching: false,weather: action.payload};
+        case FetchWeather.FETCH_FORECAST_PENDING:
+            return {...state, fetching: true };
         default: return state;
     }
 };

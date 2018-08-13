@@ -1,16 +1,48 @@
-import React from 'react';
+import React from 'react'
+import uuid from 'uuid/v4'
 
 const apiUrlImg = "http://api.openweathermap.org/img/w/";
 
-export function WeatherItem({main,weather}) {
-    const [{icon, description, main: weatherGroup}] = weather || [{}];
-    return <div className="weather-item">
-            <div className="weather-item__main-data">
-                <strong>{weatherGroup}</strong>
-                <img src={`${apiUrlImg}${icon}.png`} alt={description}/>
-            </div>
-            <WeatherData {...main} />
-        </div>
+function WeatherItem({onClick,main,icon,description,weatherGroup}){
+    return <div className="weather-item" onClick={onClick}>
+                        <div className="weather-item__main-data">
+                            <strong>{weatherGroup}</strong>
+                            <img src={`${apiUrlImg}${icon}.png`} alt={description}/>
+                        </div>
+                        <WeatherData {...main} />
+                </div>
+}
+export function WeatherItems({main,weather=[],list, onClick}) {
+    if(list){
+        return list.map(e => {
+          const {wheader:[{description,icon,main:weatherGroup}]} = e;
+          const {main} = e;
+            return <WeatherItem key={uuid()} props={{description,icon,weatherGroup,main}}/>
+        });
+    }
+    return weather.map(({icon, description, main: weatherGroup}) => 
+    <WeatherItem key={uuid()} {...{description,icon,weatherGroup,main,onClick}} />)
+}
+
+export function SwitchApi({state:_state, onClick: _onClick}){
+    let state = typeof _state !== 'undefined' ? _state : false;
+    const onClick = (e) => {
+        e.stopPropagation();
+        const parent = e.target.parentElement;
+        if(!state){
+            e.target.style.left = "initial";
+            e.target.style.right = "0";
+            parent.style.backgroundColor = '#4CB963';
+        }else {
+            e.target.style.right = "initial";
+            e.target.style.left = "0";
+            parent.style.backgroundColor = '#1D263B';
+        }
+        _onClick(e);
+    };
+    return (<div className="switch">
+        <div onClick={onClick}></div>
+    </div>)
 }
 
 export function WeatherData(props){

@@ -4,11 +4,14 @@ $dark-vanilla: #CEB7B3;
 $pale-pink: #FBDCD9;
 $ash-gray: #B7B7B7;
 $cambridge-blue: #9ABCA7;
+$medium-sea-green: #4CB963;
+$yankees-blue: #1D263B;
 
 body {
   background-color: $jet-color;
   color: $melon;
 }
+/*<CurrentWeather />*/
 input, select {
   background-color: $ash-gray;
 }
@@ -17,7 +20,6 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px $ash-gray inset;
 }
 button {
-    margin-left: 10px;
     background-color: $pale-pink;
     padding: 5px 5px;
     border-radius: 5px;
@@ -25,14 +27,49 @@ button {
       background-color: $melon;
     }
 }
+.button__current-weather {
+  margin: 0 1em;
+}
+/* <Header />*/
+.main-header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: $dark-vanilla;
+  & > ul {
+    align-content: center;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  ul > li {
+    list-style: none;
+    &:hover {
+      background-color: $ash-gray; 
+    }
+    a {
+      padding: 0 1em;
+      text-decoration: none;
+      display: block;
+      line-height: 50px;
+      color: $jet-color;
+    }
+  }
+}
 .container {
-
-  padding: 1em 2em;
+  padding: 1em 1em;
   & > label {
     margin-right: 0.5em;
   }
   & > form {
     display: inline;
+    margin-left: 1em;
+  }
+}
+.search {
+  display: flex;
+  justify-content: flex-start;
+  label,select,input {
     margin-left: 1em;
   }
 }
@@ -63,4 +100,54 @@ button {
     }
   }
 
+}
+.login-page {
+  display: grid;
+  justify-content: center;
+  grid-gap: 0.5em;
+  form {
+    display: grid;
+    justify-content: center;
+    grid-gap: 0.5em;
+    label {text-align: center;}
+    input {
+      height: 1.5em;
+    }
+  }
+  h1, a {
+    text-align: center;
+  }
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 4em;
+  height: 1.5em;
+  border-radius: 1em;
+  background-color: $yankees-blue;
+  & > div {
+    position: absolute;
+    background-color: $pale-pink;
+    border-radius: 1em;
+    left:0;
+    top:0;
+    width: 2em;
+    height: 1.5em;
+    &:hover {
+      box-shadow: 0 0 1em $melon;
+    }
+    &::after{
+      content: '|||';
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+}
+
+.error-404 {
+  padding: 2em;
+  & > a {
+    color: $dark-vanilla;
+  }
 }
