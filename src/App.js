@@ -9,6 +9,7 @@ import CurrentWeather from './components/CurrentWeather'
 // import WeatherComponentDetail from './components/WeatherComponentDetail'
 const isLoggedIn = true;
 
+
 const RouteWrapper = ({ component: Component, ...rest }) => (
   isLoggedIn ? <Route {...rest} render={props => (<MainContainer><Component {...props} /></MainContainer>)}/> :
   <Redirect to='/login'  />)

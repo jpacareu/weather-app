@@ -26,7 +26,11 @@ button {
     &:hover {
       background-color: $melon;
     }
+    &:focus{
+      outline: none;
+    }
 }
+
 .button__current-weather {
   margin: 0 1em;
 }

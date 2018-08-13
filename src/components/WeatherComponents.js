@@ -12,14 +12,8 @@ function WeatherItem({onClick,main,icon,description,weatherGroup}){
                         <WeatherData {...main} />
                 </div>
 }
-export function WeatherItems({main,weather=[],list, onClick}) {
-    if(list){
-        return list.map(e => {
-          const {wheader:[{description,icon,main:weatherGroup}]} = e;
-          const {main} = e;
-            return <WeatherItem key={uuid()} props={{description,icon,weatherGroup,main}}/>
-        });
-    }
+
+export function WeatherItems({main,weather=[], onClick}) {
     return weather.map(({icon, description, main: weatherGroup}) => 
     <WeatherItem key={uuid()} {...{description,icon,weatherGroup,main,onClick}} />)
 }

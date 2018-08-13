@@ -21,8 +21,16 @@ const fetchWeather = (state = initialState ,action) => {
     }
 };
 
+const testReducer = (state = initialState ,action) => {    
+    switch (action.type) {
+        case FetchWeather.FETCH_WEATHER_FINISHED:
+            return {...state,fetching: false};
+        default: return state;
+    }
+};
 const weatherApp = combineReducers({
-    fetchWeather
+    fetchWeather,
+    testReducer
 });
 
 export default weatherApp;
