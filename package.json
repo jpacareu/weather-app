@@ -108,7 +108,9 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "ajv": "^6.5.2",
     "enzyme": "^3.4.1",
-    "enzyme-adapter-react-16": "^1.2.0"
+    "enzyme-adapter-react-16": "^1.2.0",
+    "nodemon": "^1.18.3"
   }
 }
